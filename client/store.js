@@ -1,9 +1,31 @@
+import { createStore } from 'redux';
 
+// ACTION TYPES
 const GOT_MESSAGES_FROM_SERVER = 'GOT_MESSAGES_FROM_SERVER';
 
-export const gotMessagesFromServer = function (messages) {
+// ACTION CREATORS
+export function gotMessagesFromServer(messages) {
   return {
-    type: GOT_MESSAGES_FROM_SERVER, // be sure to use the constant, not a string literal
-    messages: messages
+    type: GOT_MESSAGES_FROM_SERVER,
+    messages
   };
+}
+
+// INITIAL STATE
+const initialState = {
+  messages: []
 };
+
+// REDUCER
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case GOT_MESSAGES_FROM_SERVER:
+       return Object.assign({}, state, { messages: state.messages.concat(action.messages) });
+    default:
+       return state;
+  }
+}
+
+// STORE
+const store = createStore(reducer);
+export default store;
