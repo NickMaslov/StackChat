@@ -26,11 +26,13 @@ export default class ChannelList extends Component {
   }
 
   render () {
+    console.log("ch**", this.state)
     return (
       <ul>
         <li>
           <NavLink to={RANDOM_CHANNEL} activeClassName="active">
             <span># really_random</span>
+            {console.log('mm*',this.state.messages)}
             <span className="badge">{ this.state.messages.filter(message => message.channelId === 1).length }</span>
           </NavLink>
         </li>
